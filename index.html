@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../Assets/css/bootstrap.min.css">
+
+</head>
+<body style="background-color: #f5f7bd;">
+  <div class="toast-container position-fixed bottom-50 start-50 p-3">
+    <div id="liveToast" class="toast border border-warning text-bg-danger" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Precaucion</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        ¿Desea Eliminar el producto?
+        <div class="mt-2 pt-2 border-top">
+          <button id="deleteConfirm" onclick="deleteFunction()" type="button"
+            class="btn btn-primary btn-sm w-25">Si</button>
+          <button type="button" class="btn btn-secondary btn-sm w-25" data-bs-dismiss="toast">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-flex align-items-center justify-content-around">
+    <div>
+      <h1>Productos</h1>
+    </div>
+    <div>
+      <button type="button" name="crear" class="btn btn-outline-success" data-bs-toggle="modal"
+        data-bs-target="#myModal" data-bs-whatever="@Modal">
+        Nuevo Producto
+      </button>
+    </div>
+  </div>
+
+
+  <div class="container mt-4">
+    <div class="table-responsive-sm">
+      <table class="table table-bordered table-striped border-secondary table-secondary table-stripe">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="table-group-divider">
+          <td colspan="8" class="text-center">
+            <div class="spinner-border" style="width: 3rem; height: 3rem;">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div id="myModal" class="modal fade" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #94c7b6;">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-center">
+            <div id="spinner-modal" class="spinner-border" style="width: 3rem; height: 3rem;">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <form id="myForm" class="needs-validation d-none" novalidate>
+            <div class="mb-3">
+              <label for="titleProduct" class="fw-bolder form-check-label">Nombre del producto:</label>
+              <input type="text" class="form-control" id="titleProduct" required>
+              <div class="invalid-feedback">
+                Por favor, ingrese un nombre.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="priceProduct" class="col form-label fw-bolder">Precio del producto:</label>
+              <input type="text" class="form-control" id="priceProduct" required>
+              <div class="invalid-feedback">
+                Por favor, ingrese un precio.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="descriptionProduct" class="form-check-label fw-bolder">Descripcion del producto:</label>
+              <textarea class="form-control" id="descriptionProduct" required></textarea>
+              <div class="invalid-feedback">
+                Por favor, ingrese una descripcion.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="categoryProduct" class="col form-label fw-bolder">Categoria del producto:</label>
+              <select id="selectCategory" class="form-select" aria-label="Default select example">
+                <option selected>Seleccione una categoria</option>
+              </select>
+              <!-- <input type="text" class="form-control" id="categoryProduct" required> -->
+              <div class="invalid-feedback">
+                Por favor, ingrese una categoria.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="imageProduct" class="form-check-label fw-bolder">Imagen del producto:</label>
+              <input type="text" class="form-control" id="imageProduct" required>
+              <div class="invalid-feedback">
+                Por favor, seleccione una imagen.
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button id="btnModal" onclick="createOrUpdateProduct(event)" type="submit" class="btn btn-primary"></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./Assets/js/bootstrap.min.js"></script>
+  <script src="./Assets/js/bootstrap.bundle.min.js"></script>
+  <script src="./src/main.js"></script>
+
+</body>
+
+</html>
